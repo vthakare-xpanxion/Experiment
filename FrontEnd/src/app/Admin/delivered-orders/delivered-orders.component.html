@@ -1,0 +1,49 @@
+<div class="container-fluid mt-3" >
+    <div class="card shadow my-3">
+
+        <div class="col-md-12" style="text-align: center"><h1>All Orders</h1></div>
+
+ 
+
+        <div class="card bordered my-4 mx-3" *ngFor=" let item of Orders,index as i">
+     
+            <h4 class="card-header">Order No. {{i+1}}</h4>
+                  <div class="card-body">
+                    <div class="row  mb-2 bordered text-center font-weight-bold" >
+                        <div class="col-md-3" style="text-align: center">
+                            Item
+                       </div>
+                        <div class="col-md-2">Quantity</div>
+                        <div class="col-md-2">Mode Of Payment</div>
+                        <div class="col-md-5">Shipping Address</div>
+                    </div>
+                    <hr>
+                    <div class="row"  >
+                            <div class="col-md-3" style="text-align: center">
+                                <div><h5>{{item.productName}}</h5></div>
+                                <div><img src={{item.path}} height="160px" width="150px"></div>
+                                <div> <h6>₹{{item.price}}</h6></div>
+                            </div>
+                            <div class="col-md-2 text-center" style="margin-top: 80px" >{{item.orderedQuantity}}</div>
+                            <div class="col-md-2 text-center" style="margin-top: 80px">{{item.modeOfPayment}}</div>
+                            <div class="col-md-5" style="margin-top: 80px">
+                                    <div><label ><h5>Name :</h5></label><label class="ml-2"><h5>{{item.firstName}}</h5></label><label class="ml-2"><h5>{{item.lastName}}</h5></label></div>
+                                    <div><label><h5>Mobile No. :</h5></label><label class="ml-2"><h5>{{item.phoneNo}}</h5></label></div>
+                                    <div><label><h5>Address :</h5></label><label class="ml-2"><h5>{{item.address}}</h5></label></div>
+                                    
+                            </div>
+                        </div>
+                  </div>
+            <div class="card-footer text-muted">
+                <div class="row">
+                    <div class="col-md-4"> Ordered On: {{item.orderDate | date : 'MMM d, y'}}</div>
+                    <div class="col-md-4 text-center"> Total Amount: ₹{{item.totalAmount}}</div>
+                    <div class="col-md-4 text-right">
+                  <span class="btn-success p-2 rounded">  Status : {{item.orderStatus}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> 

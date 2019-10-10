@@ -1,0 +1,51 @@
+
+<div class="container-fluid mt-3">
+
+
+        <div class="row justify-content-center">
+            <div class="col-lg-4 border p-3 mb-3" style="height: 650px">
+                   
+        
+                            <div class="form-group"><h3 class="text-center">Profile</h3></div>
+                            <div style="text-align: center" > <img class=img-responsive  src="../../assets/Icons/UserLogo.png"></div>
+                                
+                               
+                  
+        
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>:</td>
+                                        <td><label class ="pr-2"> {{UserDetails.firstName}}</label><label> {{UserDetails.lastName}} </label></td>
+                                    </tr>
+                                     <tr>
+                                        <td>Phone</td>
+                                        <td>:</td>
+                                        <td><label> {{UserDetails.phoneNo}}</label></td>
+                                    </tr>
+                                     <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td><label> {{UserDetails.emailId}}</label></td>
+                                    </tr>
+                                     <tr>
+                                        <td>Gender</td>
+                                        <td>:</td>
+                                        <td><label> {{UserDetails.gender}}</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>DOB</td>
+                                        <td>:</td>
+                                        <td> <label> {{UserDetails.dateOfBirth | date : 'MMM d, y'}}</label></td>
+                                    </tr>
+                                    
+                                </table>
+                                <button [routerLink]="['/editprofile']" type="submit" class="btn btn-success btn-block mt-4">Modify Details</button>
+                       
+            </div>
+        </div>
+        
+        
+        </div>
+        
+

@@ -1,0 +1,46 @@
+
+
+
+<div class="container-fluid mt-3">
+
+
+<div class="row justify-content-center">
+    <div class="col-lg-4 border p-3 mb-3" style="height: 400px">
+            <form  class="mt-4" (ngSubmit)="editAddress(address)" #address=ngForm>
+
+                    <div class="form-group"><h3 class="text-center">Update Address</h3></div>
+                        
+                       
+          
+
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>State</td>
+                                <td>:</td>
+                                <td><input class="inputline" type="text" name="state" value="{{addresshold.state}}" [ngModel]="addresshold.state" ></td>
+                            </tr>
+                             <tr>
+                                <td>City</td>
+                                <td>:</td>
+                                <td><input class="inputline" type="text" name="city" value="{{addresshold.city}}" [ngModel]="addresshold.city"></td>
+                            </tr>
+                             <tr>
+                                <td>PostalCode</td>
+                                <td>:</td>
+                                <td><input class="inputline" type="text" name="postalCode" value="{{addresshold.postalCode}}" [ngModel]="addresshold.postalCode" ></td>
+                            </tr>
+                             <tr>
+                                <td>AddressLine</td>
+                                <td>:</td>
+                                <td><input class="inputline " type="text" name="addressLine" value="{{addresshold.addressLine}}" [ngModel]="addresshold.addressLine" ></td>
+                            </tr>
+                            
+                        </table>
+                        <button type="submit" class="btn btn-success btn-block mt-4">Update</button>
+                </form>
+    </div>
+</div>
+
+
+</div>
+

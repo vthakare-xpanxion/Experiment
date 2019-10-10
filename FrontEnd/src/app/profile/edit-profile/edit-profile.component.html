@@ -1,0 +1,58 @@
+
+
+<div class="container-fluid mt-3">
+
+
+        <div class="row justify-content-center">
+            <div class="col-lg-4 border p-3 mb-3" style="height: 650px">
+                    <form  class="mt-4" (ngSubmit)="editProfile(user)" #user=ngForm>
+        
+                            <div class="form-group"><h3 class="text-center">Update Profile</h3></div>
+                            <div style="text-align: center" > <img class=img-responsive  src="../../assets/Icons/UserLogo.png"></div>
+                                
+                               
+                  
+        
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td>:</td>
+                                        <td><input class="inputline" type="text" name="firstName" value="{{userhold.firstName}}" [ngModel]="userhold.firstName" ></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <td>:</td>
+                                        <td><input class="inputline" type="text" name="lastName" value="{{userhold.lastName}}" [ngModel]="userhold.lastName" ></td>
+                                    </tr>
+                                     <tr>
+                                        <td>Phone</td>
+                                        <td>:</td>
+                                        <td><input class="inputline" type="tel" name="phoneNo" value="{{userhold.phoneNo}}" [ngModel]="userhold.phoneNo" ></td>
+                                    </tr>
+                                     <tr>
+                                        <td>Gender</td>
+                                        <td>:</td>
+                                        <td>
+                                            <div><input type="radio" name="gender" value="male" [ngModel]="userhold.gender"> Male
+                                                <input type="radio" name="gender" value="female" [ngModel]="userhold.gender"> Female
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DOB</td>
+                                        <td>:</td>
+                                        <td><input class="inputline " type="date" name="dateOfBirth" value="{{userhold.dateOfBirth}}" [ngModel]="userhold.dateOfBirth" ></td>
+                                    </tr>
+                                    
+                                </table>
+                                <button type="submit" class="btn btn-success btn-block mt-4">Update Details</button>
+                        </form>
+            </div>
+        </div>
+        
+        
+        </div>
+        
+
+
+        

@@ -1,0 +1,52 @@
+
+
+<style type="text/css">
+    label {
+        font-size: 20px;
+        color: black;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <div class="col-md-4 col-sm-4 col-xs-12" *ngIf="remPassNg">
+            <form (ngSubmit)="login(f)" #f=ngForm>
+                
+                <div style="text-align: center"><img style="width: 387px" class="img-responsive"  src="../../assets/Icons/X.jpg">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="Email"  name="EmailId" ngModel>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="Password" ngModel>
+                </div>
+                <div  style="text-align: right;">
+                    <strong   style="color: blue; cursor: pointer;" [routerLink]="['/forgetPass']">Forgot Password?</strong>
+                </div>
+
+                
+                <button type="submit" class="btn btn-success btn-block">Login</button>
+            
+                <button type="button" [routerLink]="['/register']" class="btn btn-secondary btn-block">New to XCart? Create an account</button>
+                
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+

@@ -1,0 +1,31 @@
+
+
+<div class="container-fluid mt-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 border p-3 mb-3" style="height: 600px">
+                        <form class="mt-4" (ngSubmit)="addProduct(product)" #product=ngForm>
+                            <div class="form-group"><h3 class="text-center">Add Product</h3></div>
+                            <table class="table table-borderless">
+                                
+                
+                                <tr><td><input class="inputline" type="text" name="productName" placeholder="Product Name" ngModel ></td></tr>
+                                <tr><td><input class="inputline" type="text" name="price" placeholder="Price" ngModel ></td></tr>
+                                <tr><td><input class="inputline" type="file" name="path" ngModel ></td></tr>
+                                <tr><td><input class="inputline" name="tagLine" placeholder="TagLine" ngModel ></td></tr>
+                                <tr><td>
+                                
+                                    <textarea rows = "5" cols = "50" class="inputline"  name="productShortDiscription" placeholder="Description" ngModel>
+                                            
+                                    </textarea>
+                                </td></tr>
+                                <tr><td><input class="inputline" name="category" placeholder="category" ngModel ></td></tr>
+                                
+                    
+                               
+                            </table>
+                            <button class="inputline" type="submit" class="btn btn-success btn-block">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+            

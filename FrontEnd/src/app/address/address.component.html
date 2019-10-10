@@ -1,0 +1,70 @@
+<!-- If No Address Present -->
+<div class="container-fluid mt-3" *ngIf = "!ngAddress">
+        <div class="card shadow my-3">
+                <button [routerLink]="['/addAddress']" class="btn btn-success text-center">Click Here To Add Address</button>
+                
+        </div>
+    
+</div>
+
+<!-- If Address Present -->
+<div class="container-fluid mt-3" *ngIf = "ngAddress">
+    <div class="card shadow my-3">
+        <button [routerLink]="['/addAddress']" class="btn btn-success text-center" >Add More Addresses</button>
+    
+    
+    </div>
+<table class="table">
+        <tr>
+            <th>No.</th>
+            <th>
+                State
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Postal Code
+            </th>
+            <th>
+                Address Line
+            </th>
+    
+            <th>
+
+            </th>
+        </tr>
+    
+        
+
+                
+            <tr *ngFor =" let item of Addresses, index as i">
+                <td>{{i +1}}</td>
+                <td>
+                    {{item.state}}
+                </td>
+                <td>
+                    {{item.city}}
+                </td>
+                <td>
+                    {{item.postalCode}}
+                </td>
+                <td>
+                   {{item.addressLine}}
+                </td>
+                
+                <td>
+                    <button class="btn-primary p-2 rounded" [routerLink]="['/editAddress',item.addressId]">Edit</button>
+                    <button class="btn-danger p-2 rounded" type="submit" (click)="deleteAddress(item.addressId, i )">Delete</button>
+                </td>
+            </tr>
+        
+        
+        
+    
+
+    </table>
+
+  
+    
+</div>

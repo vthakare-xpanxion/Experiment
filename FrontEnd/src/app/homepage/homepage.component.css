@@ -1,0 +1,10 @@
+#botom{
+    bottom: 0;
+    position: absolute;
+    width: 180px;
+    padding-bottom: 10px;
+}
+
+#parent{
+    position: relative;
+}

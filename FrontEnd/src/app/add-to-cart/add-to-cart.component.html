@@ -1,0 +1,76 @@
+<style>
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 10%;
+}
+
+</style>
+
+<div class="container-fluid mt-3" *ngIf ="cartng">
+            <div class="card shadow my-3">
+
+            <div class="col-md-12" style="text-align: center"><h1>My Cart</h1></div>
+     
+            <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2" style="text-align: center"><h4>Image</h4></div>
+                    <div class="col-md-2" style="text-align: center"><h4>Name</h4></div>
+                    <div class="col-md-2" style="text-align: center"><h4>Price</h4></div>
+                    <div class="col-md-2" style="text-align: center"><h4>Quantity</h4></div>
+            </div>
+
+            <div class="row" *ngFor =" let item of Cart,index as i">
+                <div class="col-md-2"></div>
+                <div class="col-md-2" style="text-align: center">
+                        <img class=img-responsive  src="{{item.path}}" style="height: 200px;width: 200px;">
+                        <div>
+                                <button class=" col-md-6" style="display: inline;" type="submit"  (click)="IncItem(item.cartId)">+</button>
+                                <button class=" col-md-6" type="submit"  (click)="DecItem(item.cartId, i)">-</button>
+        
+                        </div>
+                        <button class="btn btn-primary btn-block" (click)="RemoveItem(item.cartId, i)">Remove</button>
+                </div>
+                <div class="col-md-2" style="text-align: center">
+                        {{item.productName}} 
+                </div>
+                <div class="col-md-2" style="text-align: center">
+                    {{item.price}}
+                </div>
+                <div class="col-md-2" style="text-align: center">
+                    {{item.itemQuantity}}
+                </div>
+                <div class="col-md-2"></div>
+           
+        
+            </div>
+
+            <div class="col-4  mx-auto d-block">
+                <button class="btn btn-success btn-block" [routerLink]="['/orderConfirm']">Buy</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid mt-3" *ngIf ="!cartng">
+        <div class="card shadow my-3">
+
+        <div class="col-md-12" style="text-align: center"><h1>No Items In Cart</h1></div>
+ 
+      
+        <div class="col-4  mx-auto d-block">
+            <button class="btn btn-success btn-block" [routerLink]="['/home']">Add Some Items !</button>
+        </div>
+
+    </div>
+</div>
+

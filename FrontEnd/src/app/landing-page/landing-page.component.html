@@ -1,0 +1,294 @@
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <style>.hm-gradient {
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+.navbar .dropdown-menu a:hover {
+    color: #616161 !important;
+}
+.darken-grey-text {
+    color: #2E2E2E;
+}
+
+
+
+
+    #log {
+        border: 2px solid white;
+        padding: 60px 40px;
+        margin-top: 80px;
+    }
+
+   
+
+
+</style>
+</head>
+
+<body >
+
+
+        
+        
+        <nav class="navbar navbar-expand-lg bg-dark" *ngIf="!_auth.isAdminAuthenticated()">
+          <a id="home" class="navbar-brand" [routerLink]="['/home']">
+            <img src="../../assets/Icons/X.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            CART
+          </a>      
+          
+          <button  class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"  ></span>
+            </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
+                      </a>
+                      <div  class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" *ngFor="let item of categories" [routerLink]="['/search/category',item]">{{item}}</a>
+                       
+                      </div>
+                    </li>
+                    <!-- <li>
+                    
+                        <span style="color: chartreuse" class="navbar-text">
+                          Hello User
+                        </span>
+                     
+                    </li> -->
+                    <li style="margin-left: 338px">
+                      <form class="form-inline my-2 my-lg-0" (ngSubmit)="search(f); f.reset()" #f=ngForm>
+                        <input class="form-control mr-sm-2" aria-label="Search" type="search" placeholder="Product Name"  name="ProductName" ngModel>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+    
+                    </li>
+                  </ul>
+
+                  <div class="nav-item active" *ngIf="!_auth.isAnonymousLoggedIn()">
+                    <a class="nav-link" [routerLink]="['/currentOrders']">Track Orders <span class="sr-only">(current)</span></a>
+                  </div>
+
+                  <div class="nav-item" *ngIf="!_auth.isAnonymousLoggedIn()">
+                    <a class="nav-link" [routerLink]="['/addtocart']">Cart</a>
+                  </div>
+                  <div class="nav-item active" *ngIf="!_auth.isAnonymousLoggedIn()">
+                    <a class="nav-link" [routerLink]="['/orderHistory']">Orders History <span class="sr-only">(current)</span></a>
+                  </div>
+                  <div class="nav-item" *ngIf="_auth.isAnonymousLoggedIn()">
+                      <button class="btn btn-outline-success" type="button" [routerLink]="['/login']" *ngIf="true"  >Login/Signup</button>
+                      
+                    </div>
+                  <div class="nav-item" *ngIf="_auth.isAnonymousLoggedIn()">
+                    <button class="btn btn-outline-success" type="button"  data-toggle="modal" data-target="#myModal" *ngIf="false" >Login/Signup</button>
+                    
+                  </div>
+                  <div class="dropdown" *ngIf="!_auth.isAnonymousLoggedIn()">
+                    <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <!-- Hello, {{user}} --> Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      
+                      <a class="dropdown-item" [routerLink]="['/profile']">Profile</a>
+                      <a class="dropdown-item" [routerLink]="['/address']">Address</a>
+                      
+                      <div class="dropdown-divider"></div>
+                      <button class="dropdown-item" (click) = "logout()">Logout</button>
+                      
+                    </div>
+                  </div>
+
+               
+
+                </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg  bg-dark" *ngIf="_auth.isAdminAuthenticated() && !_auth.isAnonymousLoggedIn()">
+          <a class="navbar-brand" [routerLink]="['/AdminProducts']">
+            <img src="../../assets/Icons/X.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            ADMIN
+          </a>      
+          
+          <button  class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"  ></span>
+          </button>
+              
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Orders
+                </a>
+                <div  class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" [routerLink]="['/corders']">Current Orders</a>
+                  <a class="dropdown-item" [routerLink]="['/dorders']">Delivered Orders</a>
+                 
+                </div>
+              </li>
+              <li style="margin-left: 338px">
+                <form class="form-inline my-2 my-lg-0" (ngSubmit)="search(f);f.reset()" #f=ngForm>
+                  <input class="form-control mr-sm-2" aria-label="Search" type="search" placeholder="Product Name"  name="ProductName" ngModel>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+              </li>
+            </ul>
+
+    
+            <div class="nav-item" *ngIf="!_auth.isAnonymousLoggedIn()">
+              <a class="nav-link" [routerLink]="['/deactivelist']">Deactive Products</a>
+            </div>
+            <div class="nav-item" *ngIf="!_auth.isAnonymousLoggedIn()">
+              <button class="btn btn-outline-success" type="button" (click) = "logout()">Logout</button>
+            </div>
+     
+        
+
+         
+
+          </div>
+
+               
+        </nav>
+        
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- <ul class="nav nav-tabs">
+                        <li class=" lil active"><a data-toggle="tab"  class="btn btn-defualt text-primary"    href="#signUp">Sign Up</a></li>
+                        <li class="lil"><a data-toggle="tab" class="btn btn-defualt"  href="#login">Login</a></li>
+                    </ul> -->
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#signUp">SignUp</a>
+                        </li>
+                        
+                      </ul>
+                 
+                    <div class="tab-content">
+                        <div id="signUp" class="tab-pane">
+                            <div class="container-fluid bg">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <form (ngSubmit)="register(f)" #f=ngForm>
+                                            <div style="text-align: center"><img style="width: 200px" class="img-responsive"  src="../../assets/Icons/giphy.gif">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="text" class="form-control" placeholder="Email"  name="EmailId" ngModel>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" class="form-control" placeholder="Password" name="Password" ngModel>
+                                            </div>
+                            
+                                            <div class="form-group">
+                                                <label>Mobile</label>
+                                                <input type="number" class="form-control" placeholder="Mobile No."  name="PhoneNo" ngModel>
+                                            </div>
+                            
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input type="text" class="form-control" placeholder="First Name"  name="FirstName" ngModel>
+                                            </div>
+                            
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" class="form-control" placeholder="Last Name"  name="LastName" ngModel>
+                                            </div>
+                            
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <input type="text" class="form-control" placeholder="Gender"  name="Gender" ngModel>
+                                            </div>
+                            
+                                            <div class="form-group">
+                                                <label>DOB</label>
+                                                <input type="date" class="form-control"  name="DateOfBirth" ngModel>
+                                            </div>
+                            
+                                            
+                                            <button type="submit" class="btn btn-success btn-block">SignUp</button>
+                                        
+                                           
+                                           
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="login" class="tab-pane in active">
+                          <div class="container-fluid bg">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <form (ngSubmit)="login(f)" #f=ngForm>
+                                        
+                                        <div style="text-align: center"><img style="width: 387px" class="img-responsive"  src="../../assets/Icons/X.jpg">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" placeholder="Email"  name="EmailId" ngModel>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" placeholder="Password" name="Password" ngModel>
+                                        </div>
+                                        <button type="submit" class="btn btn-success btn-block">Login</button>
+                                    
+                                        <button type="button" [routerLink]="['/register']" class="btn btn-secondary btn-block">SignUp</button>
+                                       
+                                    </form>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                            </div>
+                        
+                        </div> 
+                        </div>
+                    </div> 
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+<!--Page Content -->
+
+<router-outlet></router-outlet> 
+
+<!-- Footer -->
+
+<div class="card text-center">
+    <div  class="card-header">
+        <a href="#home">Back To Top</a>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Mobile World</h5>
+      <p class="card-text">We Respect Your Choice</p>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+    <div class="card-footer text-muted">
+      About Us :- Mobile No:7385374504 || Mail:vaibhav@gmail.com || Address: Pune || © 2007-2019 XCART.com.
+
+    </div>
+  </div>
+
+<!-- body Ends -->
+</body>
+
+<!-- Ends -->

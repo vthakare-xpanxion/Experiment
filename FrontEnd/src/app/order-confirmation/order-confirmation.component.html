@@ -1,0 +1,51 @@
+    
+
+
+    <div class="container-fluid mt-3" *ngIf = "ngAddress" >
+        <div class="card shadow my-3">
+
+        <div class="col-md-12" style="text-align: center"><h1>Please Select The Address To Proceed</h1></div>
+ 
+        <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2" style="text-align: center"><h4>State</h4></div>
+                <div class="col-md-2" style="text-align: center"><h4>City</h4></div>
+                <div class="col-md-2" style="text-align: center"><h4>Postal Code</h4></div>
+                <div class="col-md-2" style="text-align: center"><h4>Address Line</h4></div>
+        </div>
+
+        <div class="row mt-1" *ngFor ="let item of Addresses">
+            <div class="col-md-2"></div>
+            <div class="col-md-2" style="text-align: center">
+                {{item.state}}
+            </div>
+            <div class="col-md-2" style="text-align: center">
+                {{item.city}}
+            </div>
+            <div class="col-md-2" style="text-align: center">
+                {{item.postalCode}}
+            </div>
+            <div class="col-md-2" style="text-align: center">
+                {{item.addressLine}}
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success " (click)="PlaceOrder(item.addressId)">Select</button>
+            </div>
+       
+    
+        </div>
+
+
+    </div>
+    </div>
+
+
+
+
+    <div class="container-fluid mt-3" *ngIf = "!ngAddress">
+            <div class="card shadow my-3">
+                    <button [routerLink]="['/addAddress/from','2']" class="btn btn-success text-center">Click Here To Add Address First</button>
+                    
+            </div>
+        
+    </div>

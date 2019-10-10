@@ -1,0 +1,74 @@
+
+<style type="text/css">
+
+    .err
+    {
+        
+        font-size: 20px;
+        color: red;
+    }
+
+    
+    
+</style>
+
+
+
+<div class="container-fluid mt-3" *ngIf = "!secng">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 border p-3 mb-3" >
+                <form class="mt-4" (ngSubmit)="toreset(ans)" #ans=ngForm>
+                    <div class="form-group"><h3 class="text-center">Security Question</h3></div>
+                    <div style="text-align: center"><img style="width: 200px" class="img-responsive"  src="../../assets/Icons/lock.png">
+                    </div>
+                    <table class="table table-borderless">
+                        
+                        <tr><td><label>{{que}}</label></td></tr>
+                            <tr><td><input class="inputline" type="text" name="answer" placeholder="Answer" ngModel required></td></tr>
+                              
+                            
+            
+                            
+                    </table>
+                    <button class="inputline" type="submit" class="btn btn-success btn-block">Reset Password</button>
+                    <!-- <button type="button" [routerLink]="['/login']" class="btn btn-secondary btn-block">Existing User? Log in</button> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid mt-3" *ngIf = "secng">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 border p-3 mb-3" >
+                <form class="mt-4" (ngSubmit)="changed(user)" #user=ngForm>
+                    <div class="form-group"><h3 class="text-center">Reset</h3></div>
+                    <div style="text-align: center"><img style="width: 200px" class="img-responsive"  src="../../assets/Icons/checkdone.png">
+                    </div>
+                    <table class="table table-borderless">
+                        
+        
+                        <tr><td><input class="inputline" type="email" name="EmailId" value="{{userhold.emailId}}" [ngModel]="userhold.emailId" #email=ngModel ngModel required email></td></tr>
+         
+                        <small class="text-danger" *ngIf="email.touched && email.errors?.required">
+                            Email required
+                        </small>
+                        <small class="text-danger" *ngIf="email.invalid && email.errors?.email">
+                                Enter proper format
+                            </small>
+                        <tr><td><input class="inputline" type="password" name="Password" placeholder="New Password" ngModel required></td></tr>
+                        
+                        <tr>
+                            <td>
+                                <select class="inputline text-muted"  ngModel name="question">
+                                    <option  *ngFor="let ques of secQuestions" value={{ques}}>{{ques}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr><td><input class="inputline" type="text"  name="answer" placeholder="Answer" ngModel required></td></tr>        
+                </table>
+                <button class="inputline" type="submit" class="btn btn-success btn-block">update</button>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,39 @@
+
+<div *ngIf="!_auth.isAnonymousLoggedIn()">
+
+<button [routerLink]="['/addProduct']" class="btn btn-success btn-block mt-4">Add New Product</button>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        
+                <div class="row p-3">
+                            <div class="col-lg-3 my-2" style="height: 450;width: 300;" *ngFor =" let item of Products">
+                                <div id="parent" class="card shadow" style="height: 700px;width: 320px"  >
+                                    <img class="card-img-top p-2"  src="{{item.path}}" style="height: 300px;width: 100%; ">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{item.productName}}</h5>
+                                      <label><h6 class="card-title">₹{{item.price}}</h6></label> 
+                                      <label class="mr-0 float-right"><span class="btn-success p-2 rounded">  Status : {{item.status}}</span></label> 
+                                      <p class="card-text">{{item.tagLine}}</p>
+                                      <div id="botom">
+                                        <button class="btn btn-primary btn-block" [routerLink]="['/productdtails',item.productId]">Details</button>
+                                        <button class="btn btn-primary btn-block" [routerLink]="['/editProduct',item.productId]">Edit</button>
+                                        <button  class="btn btn-danger btn-block" type="submit" (click)="deleteProduct(item.productId)">Change To Deactive</button>
+                                     
+                                      </div>
+                                       </div>
+                                </div>
+                            </div>
+                </div>
+                
+        
+
+      
+    </div>
+</div>
+
+  
+</div>
